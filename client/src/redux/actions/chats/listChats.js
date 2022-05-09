@@ -10,7 +10,7 @@ export const listChats=(userX,...otherInfo)=>async (dispatch)=>{
         if(otherInfo.length>0){
             //@ in case we use the search bar, the searched value will be passed in otherInfo array
             //@ and we need to pass that value as parameter into the link
-            const response=await axios.get(`${listChatsURL}/${Number(userX)}/${otherInfo[0]}`);
+            const response=await axios.get(`${listChatsURL}${Number(userX)}/${otherInfo[0]}`);
                 console.log(response.data);
                 dispatch({
                     type:types.LIST_CHATS,
@@ -20,7 +20,7 @@ export const listChats=(userX,...otherInfo)=>async (dispatch)=>{
         }
         else {
 
-                const response=await axios.get(`${listChatsURL}/${Number(userX)}`);
+                const response=await axios.get(`${listChatsURL}${Number(userX)}`);
                 console.log(response.data);
                 dispatch({
                     type:types.LIST_CHATS,

@@ -7,7 +7,7 @@ import {displayChatURL} from '../../../constants/constants';
 export const displayChat=(chatId)=>async(dispatch)=>{
     try{
         let userId =localStorage.publicUserId;
-        const response = await axios.get(`${displayChatURL}/${chatId}/${userId}`);
+        const response = await axios.get(`${displayChatURL}${chatId}/${userId}`);
         console.log(response.data);
         dispatch({
             type:types.DISPLAY_CHAT,

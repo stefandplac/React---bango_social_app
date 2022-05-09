@@ -11,7 +11,7 @@ export const getUsers=(...otherInfo)=>async(dispatch)=>{
         if(otherInfo.length>0){
             //@ in case we use the search bar, the searched value will be passed in otherInfo array
             //@ and we need to pass that value as parameter into the link
-            response = await axios.get(`${usersAURL}/${otherInfo[0]}`);
+            response = await axios.get(`${usersAURL}${otherInfo[0]}`);
             console.log(response.data);
             dispatch({
                 type:types.GET_USERS,
