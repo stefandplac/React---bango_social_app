@@ -28,7 +28,7 @@ import ShowEmoticons from './Chats/ShowEmoticons';
         <div className="mainRightContainer">
             <RightHeaderContainer />
             <RightChatContainer/>
-            {this.props.chatToDisplay._id?(
+            {this.props.chatToDisplay?._id(
               <>
                 <ShowEmoticons emoticonList={this.props.emoticonList[0].emoticon}  showEmoticon={this.state.showEmoticon} divTextArea={this.divTextArea}/>
            
