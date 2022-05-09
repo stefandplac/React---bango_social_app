@@ -26,7 +26,7 @@ export const writeChat=(chatBody,chatToDisplay,chatsList)=> async(dispatch)=>{
                 dispatch({
                     type:types.WRITE_CHAT,
                     chatToDisplay:response.data,
-                    chatsList:chatsList,
+                    // chatsList:chatsList,
                     errors:{},
                 })
             }
@@ -34,8 +34,8 @@ export const writeChat=(chatBody,chatToDisplay,chatsList)=> async(dispatch)=>{
                     dispatch({
                         type:types.WRITE_CHAT,
                         serverResponse:response.data,
-                        chatToDisplay:chatToDisplay,
-                        chatsList:response.data,
+                        // chatToDisplay:chatToDisplay,
+                        // chatsList:response.data,
                         errors:{}, 
                     });
                 }
