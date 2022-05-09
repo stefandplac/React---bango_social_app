@@ -92,6 +92,7 @@ router.post(
                     
                       if(chats){
                           res.json(chats);
+                      }
                     //   } else {
                     //       res.json({msg:'successfully inserted into database'});
                     //   }
