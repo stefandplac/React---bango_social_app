@@ -70,6 +70,7 @@ app.use('/api/emoticons',returnEmoticons);
 //@ delete chat by chatId
 app.use('/api/deleteChat', deleteChat);
 
+//@ app.js configuration for production environment
 console.log(process.env.NODE_ENV);
 if (process.env.NODE_ENV === 'production') {
 	// npm run build for react app
