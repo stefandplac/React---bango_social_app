@@ -42,7 +42,7 @@ app.use((req, res, next) => {
 });
 
 // routes
-app.get('/', (req, res) => res.send('Hello Social3 Server!'));
+// app.get('/', (req, res) => res.send('Hello Social3 Server!'));
 app.use('/api/auth', authRouter);
 app.use('/api/posts', postsRouter);
 app.use('/api/users', usersRouter);
