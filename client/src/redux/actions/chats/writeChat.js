@@ -22,10 +22,11 @@ export const writeChat=(chatBody,chatToDisplay,chatsList)=> async(dispatch)=>{
             console.log('response from server for posting chat',response.data);
             if(response.data._id===chatBody.id){
                 console.log(`inside writechat chatid`,response.data._id);
+                console.lof('inside writechat response.data.chat',response.data);
                 dispatch({
                     type:types.WRITE_CHAT,
-                    chatToDisplay:response.data.chat,
-                    chatsList:response.data.chats,
+                    chatToDisplay:response.data,
+                    chatsList:response.data,
                     errors:{},
                 })
             }

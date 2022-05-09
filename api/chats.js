@@ -75,11 +75,8 @@ router.post(
                 if(id){
                     try{
                         const chat = await  Chats.findById({_id:id});
-                        const chats= await Chats.find({$or:[
-                                                            {"user1.publicUserId":user},
-                                                            {"user2.publicUserId":user}
-                                                        ]},{'chats':{'$slice':-1}});
-                        res.json({chat:chat, chats:chats});
+                        
+                        res.json(chat);
                     }
                     catch(err){
                         console.log(err);
@@ -87,7 +84,17 @@ router.post(
                 
                     }  
                 }
-                else {  res.json({msg:'successfully inserted into database'});
+                else { 
+                    const chats= await Chats.find({$or:[
+                                                    {"user1.publicUserId":user},
+                                                    {"user2.publicUserId":user}
+                                                ]},{'chats':{'$slice':-1}});
+                    
+                      if(chats){
+                          res.json(chats);
+                    //   } else {
+                    //       res.json({msg:'successfully inserted into database'});
+                    //   }
                 };
             }
             catch(err){
