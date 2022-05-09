@@ -70,11 +70,5 @@
     padding:3px;
 
 }
-.showDeleteBox:hover{
-    width:23px;
-    height:23px;
-    padding:1px;
-    stroke-width:2;
-    color:lightcoral;
-}
+
 
