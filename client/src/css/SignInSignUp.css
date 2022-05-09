@@ -1,0 +1,320 @@
+.mainSignIn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family: 'Raleway', sans-serif;
+   
+}
+
+.mainSignInBox {
+    align-self: center;
+    width: 25rem;
+    max-width: 25rem;
+    /* overflow: hidden; */
+    min-height:20rem;
+    max-height: fit-content;
+    padding: 1rem;
+    padding-bottom:55px;
+    margin: 1 solid #d3d3d3;
+    border-radius: 1rem;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+.mainBoxShadow {
+    box-shadow: 0 0 50px lightblue;
+    
+    /* box-shadow: lightblue 0px 22px 70px 4px; */
+
+}
+
+
+.signInLogo {
+    width: 100%;
+    max-height: 3.5rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    padding: 1rem;
+    font-size: 1.6rem;
+    font-weight: 700;
+
+    color: lightseagreen;
+}
+
+.signInForm {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding-left: 1rem;
+    width: 25rem;
+    color: rgb(123, 128, 127);
+    color: rgb(61, 60, 60);
+    font-size: 1.5rem;
+    /* font-weight: 800; */
+    
+    
+   
+
+
+}
+
+.inputSignIn {
+    display: flex;
+    flex-wrap: wrap;
+   
+    width: 100%;
+    padding-right: 1rem;
+    padding-top: 1rem;
+    width: 25rem;
+}
+
+.inputStyle {
+    border: 0.1rem solid rgb(175, 184, 182);
+    border-radius: 0.2rem;
+    width: 11rem;
+    height:1.5rem;
+    color:lightsalmon;
+    font-weight:600;
+    outline:none;
+
+}
+.inputStyle::placeholder{
+    color:lightslategray;
+}
+
+.inputStyle:hover {
+    border: 0.1rem solid lightblue;
+}
+
+.inputStyle:focus {
+    border: 0.1rem solid lightskyblue;
+}
+
+.labelSignIn {
+    width: 8rem;
+    font-size: 1.3rem;
+}
+
+.logInBtn {
+    font-size: 1.2rem;
+    background-color: antiquewhite;
+    border-radius: 0.1rem;
+    border: 0.1rem solid rgb(226, 223, 223);
+    justify-self: flex-end;
+    padding: 5px 20px 5px 20px;
+    border-radius: 0.3rem;
+    color: rgb(112, 111, 111);
+    align-self: flex-end;
+    justify-self:flex-end;
+}
+.logInBtn:hover{
+    background-color:rgb(255, 177, 146);
+    border:2px solid rgb(228, 228, 228);
+    color:#faebd7;
+    font-weight:500;
+    font-size:1.2rem;
+}
+.signInP{
+    font-size:1rem;
+    position:absolute;
+}
+.signInSpan{
+    font-size:1rem;
+    font-weight:600;
+}
+.signInMenu{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content: center;
+    margin-right:70px;
+    padding-left:10px;
+    font-size:1.4rem;
+    color:rgb(182, 182, 182);
+}
+.signInMenuActive{
+    
+    height:35px;
+    width:125px;
+    text-align:center;
+    color:lightblue;
+    border-bottom:2px solid lightblue;
+
+}
+.signInMenuInactive{
+    height:35px;
+    width:125px;
+    text-align:center;
+}
+.signInMenuRegister{
+    
+    height:35px;
+   
+    text-align:center;
+    color:lightblue;
+    border-bottom:2px solid lightblue;
+}
+.linkStyle{
+    text-decoration: none;
+    color:rgb(182, 182, 182);
+}
+.signInCheck{
+    color:lightblue;
+    width:1.5rem;
+    height:1.5rem;
+}
+.logoSvg{
+    width:2rem;
+    height:2rem;
+    color:lightsalmon;
+}
+.errorAlert{
+    display:flex;
+    font-size:0.8rem;
+    color:lightcoral;
+   
+    padding: 5px 10px 5px 10px;
+    border-radius:5px;
+    max-width:180px;
+    height:15px;
+    text-align: center;
+    background-image: linear-gradient(rgb(254, 237, 237),  white);
+
+}
+.errorAlertRegistration{
+   padding:5px;
+   max-width:150px;
+}
+.errorContainerRegistration {
+    margin-left:0px;
+}
+.errorContainer{
+    display:flex;
+    justify-content:center;
+    margin-left:30px;
+    margin-top:5px;
+    
+    width:185px;
+}
+.registrationFully{
+    display:flex;
+   
+    align-self:center;
+    justify-self:center;
+    padding:40px;
+    tex-align:center;
+    font-size:1.4rem;
+    font-family:Raleway;
+    margin-top:40px;
+    color:lightseagreen;
+
+}
+.registrationFullyLogo{
+    display:flex;
+    flex-direction:row;
+    justify-content:center;
+    align-items:center;
+    font-weight:700;
+    font-size:2rem;
+    color:lightseagreen;
+    padding:0px;
+    border-right:1px solid rgb(215, 214, 214);
+    margin-right:10px;
+    padding-right:20px;
+} 
+.logoSvgOK{
+    width:2rem;
+    height:2rem;
+    color:lightsalmon;
+}
+.redirectMsg{
+    color:lightslategray;
+    text-align:center;
+}
+.redirectMsgRed{
+    color:lightsalmon;
+    padding-top:5px;
+}
+.Bar{
+    width:100%;
+    border:none;
+    height:0.1rem;
+    background-color:rgb(243, 243, 243);
+    margin-top:7px;
+    position:relative;
+}
+.progressBar{
+    width:1%;
+    max-width:100%;
+    height:0.1rem;
+    position:absolute;
+    background-color:lightskyblue;
+}
+.recoverPBox{
+    width:160px;
+    display:flex;
+    
+    align-self:center;
+    justify-self:center;
+    padding:20px 20px 5px 20px;
+    border-bottom:1px solid rgb(235, 236, 237);
+    
+}
+.recoverBoxLogo{
+   
+        display:flex;
+        flex-direction:row;
+        justify-content:center;
+        justify-self:center;
+        align-self:center;
+        align-items:center;
+        font-weight:700;
+        font-size:2rem;
+        color:lightseagreen;
+        padding:0px 10px 0px 10px;
+       border-right:1px solid rgb(215, 214, 214);
+       border-left:1px solid rgb(215, 214, 214);
+       border-top:1px solid lightblue;
+       border-radius:5px;
+        margin:0px 10px 0px 10px;
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        /* padding:20px; */
+    
+}
+.recoverPDivP{
+    
+    margin-rigth:10px;
+    
+    font-size:1.2rem;
+    text-align:center;
+    padding-bottom:15px;
+}
+.recoverPInput{
+    border:none;
+    border-bottom:1px solid rgb(90, 89, 89);
+    font-size:1rem;
+    text-align:center;
+    color:lightslategrey;
+    outline:none;
+  
+}
+.recoverPInput::placeholder{
+    color:lightslategrey;
+    font-size:1rem;
+
+}
+.recoverPInput:focus{
+    border-bottom:0.1rem solid lightblue;
+    color:lightslategrey;
+}
+.recoverPInput:hover{
+    border-bottom:0.1rem solid lightblue;
+    color:lightslategrey;
+}
+.recoverPBtn{
+
+}
