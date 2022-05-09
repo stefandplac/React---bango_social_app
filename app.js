@@ -61,7 +61,7 @@ app.use('/api/chats', chats);
 //@ fileUpload
 app.use('/api/fileUpload',fileInput);
 
-app.use('/photo',express.static('uploads'));
+app.use('/photo/',express.static('uploads'));
 app.use('/emoticons',express.static('public/emoticons'))
 
 //@ emoticons return
