@@ -2,6 +2,9 @@ import axios from 'axios';
 
 import * as types from '../constants/types';
 
+//@ import constants...
+import {registerAURL} from '../../constants/constants';
+
 
 export const registerUser=(userData)=>async (dispatch)=>{
     const configHeaders = {
@@ -12,7 +15,7 @@ export const registerUser=(userData)=>async (dispatch)=>{
     const requestBody=JSON.stringify(userData);
     let data={};
     try{
-                await axios.post('http://localhost:5000/api/users',
+                await axios.post(registerAURL,
                 requestBody,
                 configHeaders,
                 )

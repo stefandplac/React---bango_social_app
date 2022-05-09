@@ -1,6 +1,9 @@
 import * as types from '../constants/types';
 import axios from 'axios';
 
+//@ import constants...
+import {loginAURL} from '../../constants/constants';
+
 
 export const loginA=(loginData)=>async (dispatch)=>{
     //@ we will take the login credentials and  post them with axios.post to the endpoint on the our server
@@ -15,7 +18,7 @@ export const loginA=(loginData)=>async (dispatch)=>{
     let data={};
 
     try{
-            await axios.post('http://localhost:5000/api/auth',
+            await axios.post(loginAURL,
                                 requestBody, 
                                 configHeaders
             )

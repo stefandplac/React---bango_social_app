@@ -18,7 +18,10 @@ export const recoverP={top:'A recovery email has been successfully sent ',
 };
 
 //@ URL ADDRESSES API SERVER
-export const attachURL='http://localhost:5000/photo/';
-export const emoticonURL="http://localhost:5000/emoticons/";
+export const attachURL='/photo/';
+export const emoticonURL="/emoticons/";
 //# deleteChat url
-export const deleteChatURL="http://localhost:5000/api/deleteChat/";
+export const deleteChatURL="/api/deleteChat/";
+export const loginAURL="/api/auth";
+export const registerAURL="/api/users";
+export const usersAURL="/api/users/usersList";
