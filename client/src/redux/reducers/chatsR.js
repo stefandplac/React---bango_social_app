@@ -20,6 +20,7 @@ export const chatsR=(state={chatsList:[],
         case types.WRITE_CHAT:
             return {...state,
                     chatToDisplay:action.chatToDisplay,
+                    chatsList:action.chatsList,
                     serverResponse:action.serverResponse,
                     errors:action.errors,
             };

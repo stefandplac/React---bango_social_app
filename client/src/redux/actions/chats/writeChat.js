@@ -4,7 +4,7 @@ import * as types from '../../constants/types';
 //@ import constants...
 import {writeChatURL} from '../../../constants/constants';
 
-export const writeChat=(chatBody,chatToDisplay)=> async(dispatch)=>{
+export const writeChat=(chatBody,chatToDisplay,chatsList)=> async(dispatch)=>{
         
         console.log(`chatBody inside writeChat action`, chatBody);
        
@@ -24,7 +24,8 @@ export const writeChat=(chatBody,chatToDisplay)=> async(dispatch)=>{
                 console.log(`inside writechat chatid`,response.data._id);
                 dispatch({
                     type:types.WRITE_CHAT,
-                    chatToDisplay:response.data,
+                    chatToDisplay:response.data.chat,
+                    chatsList:response.data.chats,
                     errors:{},
                 })
             }
@@ -33,6 +34,7 @@ export const writeChat=(chatBody,chatToDisplay)=> async(dispatch)=>{
                         type:types.WRITE_CHAT,
                         serverResponse:response.data,
                         chatToDisplay:chatToDisplay,
+                        chatsList:chatsList,
                         errors:{},
                     });
                 }

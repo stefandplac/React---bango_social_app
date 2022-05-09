@@ -75,7 +75,11 @@ router.post(
                 if(id){
                     try{
                         const chat = await  Chats.findById({_id:id});
-                        res.json(chat);
+                        const chats= await Chats.find({$or:[
+                                                            {"user1.publicUserId":user},
+                                                            {"user2.publicUserId":user}
+                                                        ]},{'chats':{'$slice':-1}});
+                        res.json({chat:chat, chats:chats});
                     }
                     catch(err){
                         console.log(err);

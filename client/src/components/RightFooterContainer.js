@@ -49,7 +49,7 @@ class RightFooterContainer extends Component {
     let chatBody=this.buildChat();
     chatBody.chatType="txt";
     console.log('cahtbody inside handleClick',chatBody);
-    await this.props.writeChat(chatBody,this.props.chatToDisplay);
+    await this.props.writeChat(chatBody,this.props.chatToDisplay,this.props.chatsList);
     this.props.textAreaRef.current.innerHTML='';
    
   }
@@ -137,6 +137,7 @@ class RightFooterContainer extends Component {
 const mapStateToProps=(state)=>{
   return{
     chatToDisplay:state.chatsR.chatToDisplay,
+    chatsList:state.chatsR.chatsList,
     
   }
 }
