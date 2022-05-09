@@ -1,6 +1,9 @@
 import axios from 'axios';
 import * as types from '../../constants/types';
 
+//@ import constants...
+import {writeChatURL} from '../../../constants/constants';
+
 export const writeChat=(chatBody,chatToDisplay)=> async(dispatch)=>{
         
         console.log(`chatBody inside writeChat action`, chatBody);
@@ -12,7 +15,7 @@ export const writeChat=(chatBody,chatToDisplay)=> async(dispatch)=>{
                 }
             };
             
-            const response = await axios.post('http://localhost:5000/api/chats',
+            const response = await axios.post(writeChatURL,
                                                 chatBody,
                                                 configHeaders,
             );

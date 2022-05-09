@@ -4,6 +4,7 @@ import * as types from '../constants/types';
 
 //@ import constants...
 import {registerAURL} from '../../constants/constants';
+import {registerAURLconfirmationEmail} from '../../constants/constants';
 
 
 export const registerUser=(userData)=>async (dispatch)=>{
@@ -30,7 +31,7 @@ export const registerUser=(userData)=>async (dispatch)=>{
                     isUserRegistered:true,
 
                 });
-                await axios.post('http://localhost:5000/api/confirmationEmail',
+                await axios.post(registerAURLconfirmationEmail,
                              {email:userData.email},
                              configHeaders,   
                 ).then(response=>{
