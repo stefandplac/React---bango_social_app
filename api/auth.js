@@ -70,7 +70,7 @@ router.post(
 				(err, token) => {
 					if (err) throw err;
 					console.log('token = ', token);
-					return res.json({ token: token,publicUserId:user.publicUserId, name:user.name });
+					return res.json({ token: token,publicUserId:user.publicUserId, name:user.name, avatar:user.avatar, profile:user.profile, status:user.status });
 				}
 			);
 		} catch (error) {}

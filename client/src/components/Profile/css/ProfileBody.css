@@ -1,0 +1,8 @@
+.profileBody{
+    /* border:1px solid blue; */
+    display:flex;
+    flex-direction: column;
+    flex-wrap:wrap;
+    background-color:#ffffff;
+    flex-grow:1;
+}

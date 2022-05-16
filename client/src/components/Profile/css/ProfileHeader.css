@@ -1,0 +1,40 @@
+.profileHeader{
+    /* border:1px solid red; */
+    background-color:#76cd9d;
+    height:7rem;
+    display:flex;
+    align-items: flex-end;
+    justify-content: flex-start;
+    
+    
+}
+.profileHeaderBox{
+    display:flex;
+    align-items: center;
+    width:fit-content;
+    margin:10px;
+    margin-bottom:20px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size:1.2rem;
+    font-weight: 600;
+}
+.emoticonProfileHeader{
+    color:antiquewhite;
+    width:22px;
+    height:25px;
+    margin-left:10px;
+    padding-right:3px;
+    align-self: center;
+}
+.emoticonProfileHeader:hover{
+    padding:0px;
+    width:25px;
+    height:25px;
+    color:rgb(255, 255, 255);
+}
+.profileHeaderTitle{
+    align-self: center;
+    margin-left:1rem;
+    color:antiquewhite;
+    margin-bottom:4px;
+}

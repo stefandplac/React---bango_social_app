@@ -19,7 +19,7 @@ class LeftSearchBarContainer extends Component {
           await this.props.searchForChat(event.target.value);
           console.log('searchValue',event.target.value);
           console.log('state store search value', this.props.searchValue);
-          await  this.props.listChats(localStorage.publicUserId, event.target.value);
+          await  this.props.listChats(localStorage.publicUserId, {searchValue:event.target.value});
       }
   }
   render() {

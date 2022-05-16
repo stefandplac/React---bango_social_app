@@ -1,0 +1,5 @@
+Test e-mail addresses:
+marko.test.v01@gmail.com   pass:1234
+john.test.v01@gmail.com	   pass:1234
+lisa.test.v01@gmail.com    pass:1234
+peter.test.v01@gmail.com   pass:1234

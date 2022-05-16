@@ -71,11 +71,10 @@ router.post(
                 }
                 //@ i passed one more property from frnt end only in those cases where there is a new chat
                 //@ case in which we need the server to return us the updated chat conversaton including new chats
-                let {id}=req.body;
+                let {id,user}=req.body;
                 if(id){
                     try{
                         const chat = await  Chats.findById({_id:id});
-                        
                         res.json(chat);
                     }
                     catch(err){
@@ -84,18 +83,15 @@ router.post(
                 
                     }  
                 }
-                else { 
-                    const chats= await Chats.find({$or:[
+                else {  
+                    //@ if this action comes from adding a new conversation in chatBody I will have placed also userId
+                    //@ and use this userId to return back the updated list of conversation specific for the logged user
+                    //@ and not the entire list of conversations that exist in the database for all users
+                    const chats = await Chats.find({$or:[
                                                     {"user1.publicUserId":user},
                                                     {"user2.publicUserId":user}
                                                 ]},{'chats':{'$slice':-1}});
-                    
-                      if(chats){
-                          res.json(chats);
-                      }
-                    //   } else {
-                    //       res.json({msg:'successfully inserted into database'});
-                    //   }
+                    res.json(chats);
                 };
             }
             catch(err){
@@ -105,11 +101,12 @@ router.post(
         // }
     }
 );
-router.get(['/getChatsList/:user','/getChatsList/:user/:searchValue'],async (req,res,next)=>{
+router.get(['/getChatsList/:user','/getChatsList/:user/:searchValue','/receiveChatsList/:user/:chatsListLength'],async (req,res,next)=>{
 	// const {token}=req.body;
-    let {user,searchValue}=req.params;
+    let {user,searchValue,chatsListLength}=req.params;
     console.log(user);
     console.log('searchValue',searchValue);
+    console.log('chatsListLength : ', chatsListLength);
 	try{
 		// @ return also the last chat message for every conversation open
         
@@ -117,6 +114,9 @@ router.get(['/getChatsList/:user','/getChatsList/:user/:searchValue'],async (req
                                                 {"user1.publicUserId":user},
                                                 {"user2.publicUserId":user}
                                             ]},{'chats':{'$slice':-1}});
+            if(!chats){
+                res.json([]); 
+            }
             if(searchValue){
                 //@ if a searchValue is present we will return filtered data considering the searchValue
                 chats= chats.filter(
@@ -129,7 +129,12 @@ router.get(['/getChatsList/:user','/getChatsList/:user/:searchValue'],async (req
                 res.json(chats);
             }   
             else{
-                res.json(chats);
+                if(Number(chatsListLength)===chats.length){
+                        res.json({ok:true});
+                }
+                else{
+                    res.json(chats);
+                }
             }                             
            
 
@@ -139,8 +144,8 @@ router.get(['/getChatsList/:user','/getChatsList/:user/:searchValue'],async (req
 	}
 });
 
-router.get(['/getChat/:id','/getChat/:id/:userId'], async(req,res,next)=>{
-    let {id,userId}=req.params;
+router.get(['/getChat/:id','/getChat/:id/:userId','/getChat/:id/:userId/:chatLength'], async(req,res,next)=>{
+    let {id,userId,chatLength}=req.params;
     
     try{
         //@ when we return all the chats from a specific conversation
@@ -149,17 +154,37 @@ router.get(['/getChat/:id','/getChat/:id/:userId'], async(req,res,next)=>{
         const chat = await  Chats.findById({_id:id});
         // let currentLength=  chat.chats.length;
         if(!chat){
-            res.json({error:'there is no existing chat yet'});
+            res.json({});
         }
         else{
+               let x=0;
                 chat.chats.map(chat=> {
                     if(Number(chat.user)!==Number(userId)){
-                        chat.seen=true;
+                        if(chat.seen===false){
+                            chat.seen=true;
+                            x =x+1;
+                            console.log('x:',x);
+                        }
                     }
                 });
                 chat.save();
-            
-                    res.json(chat);
+                // @ I will check the legnth of chat.chats and if it is the same with the length from frontend I will return 
+                // @ a json file with {ok:true} , in which case we will not dispatch anymore an action in frontend, there is no update to do it
+                // @ otherwise we will send the updated conversation (chat) 
+                
+                // if(Number(chatLength) === chat.chats.length){
+                //     if(x===0){
+                //        res.json({ok:true});
+                //     }
+                //     else{
+                //         res.json(chat);
+                //     }
+                // }
+                // else{
+                //     res.json(chat);
+                // }
+                res.json(chat);
+                   
             }
        
         

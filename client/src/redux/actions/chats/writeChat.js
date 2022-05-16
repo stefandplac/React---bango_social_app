@@ -1,8 +1,8 @@
 import axios from 'axios';
 import * as types from '../../constants/types';
 
-//@ import constants...
-import {writeChatURL} from '../../../constants/constants';
+//@ import constants urls
+import { writeChatURL } from '../../../constants/constants';
 
 export const writeChat=(chatBody,chatToDisplay,chatsList)=> async(dispatch)=>{
         
@@ -15,14 +15,13 @@ export const writeChat=(chatBody,chatToDisplay,chatsList)=> async(dispatch)=>{
                 }
             };
             
-            const response = await axios.post(writeChatURL,
+            const response = await axios.post(`${writeChatURL}`,
                                                 chatBody,
                                                 configHeaders,
             );
             console.log('response from server for posting chat',response.data);
-            if(response.data._id===chatBody.id){
+            if((response.data._id&&chatBody.id)&&(response.data._id===chatBody.id)){
                 console.log(`inside writechat chatid`,response.data._id);
-                console.log('inside writechat response.data.chat',response.data);
                 dispatch({
                     type:types.WRITE_CHAT,
                     chatToDisplay:response.data,
@@ -31,21 +30,22 @@ export const writeChat=(chatBody,chatToDisplay,chatsList)=> async(dispatch)=>{
                 })
             }
             else{
-                console.log('inside writechat response.data.chat',response.data);
                     dispatch({
                         type:types.WRITE_CHAT,
-                        serverResponse:response.data,
-                        chatToDisplay:{},
+                       
+                        chatToDisplay:chatToDisplay,
                         chatsList:response.data,
-                        errors:{}, 
+                        errors:{},
                     });
+                    console.log('response.data ',response.data);
                 }
 
         }
         catch(err){
             dispatch({
                 type:types.WRITE_CHAT,
-                serverResponse:{},
+                chatToDisplay:chatToDisplay,
+                chatsList:chatsList,
                 errors:err,
             });
 

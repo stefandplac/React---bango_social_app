@@ -4,7 +4,10 @@ import parser from 'html-react-parser';
 
 //@ redux actions....
 import {displayChat} from '../redux/actions/chats/displayChat';
-import {listChats} from '../redux/actions/chats/listChats';
+
+//@ import constants 
+import {backgroundURL} from '../constants/constants';
+
 
 //@ user defined components
 
@@ -14,6 +17,8 @@ import {attachURL} from '../constants/constants';
 import ChatTimeBox from './Chats/ChatTimeBox';
 
 const today=new Date();
+
+
 class RightChatContainer extends Component {
  
  
@@ -21,35 +26,44 @@ class RightChatContainer extends Component {
          
                   let interval = setInterval(() => {
                                         // this.setState({ time: Date.now() });
-                                        if(this.props.chatToDisplay._id&&localStorage.publicUserId){
-                                            this.props.displayChat(this.props.chatToDisplay._id);
-                                            //@ to avoid creating 2 interval objects we will use this one also for update the chats list
-                                            //@ if there is a searchValue in the search box then we will not update the chatList to keep the search results
-                                            if(this.props.searchvalue==='' ){ 
-                                              this.props.listChats(localStorage.publicUserId, this.props.searchValue)
-                                            };
-                                            console.log('RightchatContainer called once more');
+                                        if(localStorage.publicUserId){
+                                          
+                                            this.props.displayChat(this.props.chatToDisplay._id, this.props.chatToDisplay.chats.length);
+                                            //  console.log('this.props.chatToDisplay.chats.length:',this.props.chatToDisplay.chatLength);                                        
+                                            // console.log('RightchatContainer called once more');
                                             // this.chatContainerBox.current.scrollTop=this.chatContainerBox.current.scrollHeight;
                                             clearInterval(interval);
+                                            
                                             this.a();
                                         }
                                         else{
                                           clearInterval(interval);
                                           return;
                                         }
-                                      }, 3000);
+                                      }, 7000);
                   
     };
+
+  b=()=>{
+    // console.log('rightChatContainer this.props.chatToDisplay._id:',this.props.chatToDisplay._id);
+    // console.log('this.props.chats[0]:',this.props.chatsList[0]);
+    if(!this.props.chatToDisplay._id){
+        if(this.props.chatsList[0]){ 
+              this.props.displayChat(this.props.chatsList[0]._id);
+        }
+      }
+      
+  
+  }
   componentDidMount() {
-   
     this.a();
    
-    
   }
-  componentWillUnmount() {
-    clearInterval(this.interval);
+  componentDidUpdate(){
+
+       this.b();
   }
- 
+
   render() {
    
     return (
@@ -162,8 +176,8 @@ const mapStateToProps=(state)=>{
 }
 const mapDispatchToProps=(dispatch)=>{
   return{
-    displayChat:(chatId)=>{dispatch(displayChat(chatId))},
-    listChats:(userLogged)=>{dispatch(listChats(userLogged))},
+    displayChat:(chatId,chatLength)=>{dispatch(displayChat(chatId,chatLength))},
+  
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(RightChatContainer);

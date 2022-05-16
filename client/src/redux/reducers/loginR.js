@@ -8,6 +8,8 @@ export const loginR = (state={
                                 errors:{}, 
                                 actionFinished:false,
                                 publicUserId:'',
+                                userProfile:{},
+                                avatars:[],
                                 
                             }
                         , action)=>{
@@ -19,6 +21,7 @@ export const loginR = (state={
                     loginResponseData:action.loginResponseData,
                     errors:action.errorData,
                     publicUserId:action.publicUserId,
+                    userProfile:action.userProfile,
                 };
         case types.DELETE_LOGIN_ERRORS:
             return {...state, errors:action.errorData};
@@ -49,6 +52,22 @@ export const loginR = (state={
                     auth:false,
                     actionFinished:false,
             };
+        case types.LOAD_USER_PROFILE:
+            return{...state,
+                    userProfile:action.userProfile,
+                    errors:action.errors,
+            };
+        case types.GET_AVATARS:
+            return{...state,
+                avatars:action.avatars,
+                errors:action.errors,
+            };
+        case types.UPDATE_PROFILE:
+            return{
+                ...state,
+                errors:action.errors,
+                userProfile:action.userProfile,
+            }
         default:
             return state;
     }

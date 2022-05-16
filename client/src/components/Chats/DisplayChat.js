@@ -5,6 +5,9 @@ import parser from 'html-react-parser';
 //@ redux actions....
 import {displayChat} from '../../redux/actions/chats/displayChat';
 
+//@ import constants 
+import {avatarURL} from '../../constants/constants';
+
 //@ css file
 import './css/displayChat.css';
 import DeleteChat from './DeleteChat';
@@ -17,6 +20,7 @@ class DisplayChat extends Component {
             chatDate:new Date(),
             // new Date(this.props.chat?.chats[this.props.chat.chats.length-1].date),
             showDelete:false,
+            friendAvatar:'',
             
         }
     }
@@ -31,15 +35,28 @@ class DisplayChat extends Component {
   handleMouseOutChat=()=>{
         this.setState({showDelete:false});
   }
+  returnAvatar=()=>{
+     let x;
+     if(Number(this.props.chat.user1.publicUserId)===Number(localStorage.publicUserId)){
+        x= this.props.usersList.filter(user=>Number(user.publicUserId)===Number(this.props.chat.user2.publicUserId));
+     }
+     else{
+        x= this.props.usersList.filter(user=>Number(user.publicUserId)===Number(this.props.chat.user1.publicUserId));
+     }
+     return x[0].avatar;
+     
+  }
+  componentDidMount(){
+      this.setState({friendAvatar:this.returnAvatar()});
+  }
+
   
   render() {
       
     return (
     <div className="chatContainer" onClick={this.handleClick} onMouseOver={this.handleMouseOverChat} onMouseOut={this.handleMouseOutChat}>
         <div className="avatarUser">
-              <svg xmlns="http://www.w3.org/2000/svg" className="" fill="none" viewBox="0 0 22 22" stroke="currentColor" strokeWidth={1}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
+                <img className="avatarImgBox" src={`${avatarURL}${this.state.friendAvatar}`} alt=""/>
         </div>
         <div className="chatBox">
             <div className="displayNameDate"> 
@@ -92,13 +109,15 @@ class DisplayChat extends Component {
                             </div>
                             
                             )}
+                            
                              
                         </>
-                    ):(<>no messages yet</>)}
+                    ):(<div className="displayNoStatus">no messages yet</div>)}
                     <div className="showDeleteBox" >
                                     {this.state.showDelete===true?(
-                                       
-                                            <DeleteChat chatId={this.props.chat._id}/>
+                                       <>
+                                            {/* <DeleteChat chatId={this.props.chat._id}/> */}
+                                            </>
                                        
                                     ):(
                                         <></>
@@ -117,6 +136,8 @@ const mapStateToProps=(state)=>{
     return{
        
         chatToDisplay:state.chatsR.chatToDisplay,
+        userProfile:state.loginR.userProfile,
+        usersList:state.usersR.usersList,
     }
 }
 const mapDispatchToProps=(dispatch)=>{

@@ -18,6 +18,8 @@ const initialState = {
         auth:false,
         emailSent:false,
         publicUserId:'',
+        userProfile:{},
+        avatars:[],
        
     },
     registrationR:{
@@ -35,6 +37,7 @@ const initialState = {
         serverResponse:{},
         searchValue:'',
         emoticons:[],
+        showProfile:false,
         
     }
 };

@@ -3,11 +3,21 @@ import { connect } from 'react-redux';
 
 //@ import redux actions....
 import {deleteChat} from '../../redux/actions/chats/deleteChat';
+import {listChats} from '../../redux/actions/chats/listChats';
+
 
 class DeleteChat extends Component {
-    handleClick=()=>{
-        this.props.deleteChat(this.props.chatId,this.props.chatsList);
-        
+    handleClick=async ()=>{
+        console.log('inside DElete chat component>>chatId>>chatToDisplay>>chatsList',
+                    this.props.chatId,this.props.chatToDisplay,this.props.chatsList
+        );
+        await this.props.deleteChat(this.props.chatId,this.props.chatToDisplay,this.props.chatsList);
+       
+    }
+    componentDidUpdate(){
+        if(this.props.chatsList[0]){
+           this.props.listChats(localStorage.publicUserId);
+        }
     }
   render() {
     return (
@@ -22,11 +32,13 @@ class DeleteChat extends Component {
 const mapStateToProps=(state)=>{
     return {
         chatsList:state.chatsR.chatsList,
+        chatToDisplay:state.chatsR.chatToDisplay,
     }
 }
 const mapDispatchToProps=(dispatch)=>{
     return {
         deleteChat:(chatId)=>{dispatch(deleteChat(chatId))},
+        listChats:(userId)=>{dispatch(listChats(userId))},
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(DeleteChat);

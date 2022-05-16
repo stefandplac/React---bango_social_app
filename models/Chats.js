@@ -1,6 +1,7 @@
 import mongoose from 'mongoose';
 
 const chatSchema = mongoose.Schema({
+    
     user1:{
                name:{
                    type:String

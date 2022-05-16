@@ -26,6 +26,7 @@ class App extends Component{
      this.props.loadUser();
      
      
+     
   }
   componentContruct=(x)=>{
     return <ResetP {...x}/>
@@ -60,6 +61,8 @@ const mapStateToProps=(state)=>{
     usersList:state.usersR.usersList,
     loginResponseData:state.loginR.loginResponseData,
     publicUserId:state.loginR.publicUserId,
+    userProfile:state.loginR.userProfile,
+    showProfile:state.chatsR.showProfile,
     
     
   }

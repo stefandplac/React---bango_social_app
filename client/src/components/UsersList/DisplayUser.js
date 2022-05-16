@@ -6,13 +6,17 @@ import './css/users.css';
 import {writeChat} from '../../redux/actions/chats/writeChat';
 import {listChats} from '../../redux/actions/chats/listChats';
 
+//@ import constants 
+import {avatarURL} from '../../constants/constants';
+
  class DisplayUser extends Component {
+   
     handleClick=async ()=>{
         this.props.returnDisplayUser();
         let author={publicUserId:localStorage.publicUserId, name:localStorage.name};
         let friend={publicUserId:this.props.user.publicUserId, name:this.props.user.name};
-        let chatBody={author:author, friend:friend, chatContent:''};
-        await this.props.writeChat(chatBody,{});
+        let chatBody={author:author, friend:friend, chatContent:'', user:localStorage.publicUserId};
+        await this.props.writeChat(chatBody,{},this.props.chatsList);
         await this.props.listChats(localStorage.publicUserId);
         await console.log(`new user chat list ${this.props.chatsList}`);
     }
@@ -20,15 +24,22 @@ import {listChats} from '../../redux/actions/chats/listChats';
     return (
       <div className="userContainer" onClick={this.handleClick}>
           <div className="avatarUser">
-                <svg xmlns="http://www.w3.org/2000/svg" className="" fill="none" viewBox="0 0 22 22" stroke="currentColor" strokeWidth={1}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
+                <img className="avatarImgBox" src={`${avatarURL}${this.props.user.avatar}`} alt=""/>
           </div>
           <div className="displayUser">
-              <div> 
-                {`${this.props.user.publicUserId} ${this.props.user.name}`}
+              <div className="displayUserName" style={{}}> 
+                {`${this.props.user.name}`}
               </div>
-              <div>Status user</div>
+              {this.props.user.status!==''?(
+                  <div className="displayUserStatus">
+                      {this.props.user.status}
+                  </div>
+              ):(
+                  <div className="displayUserStatus displayUserNoStatus">
+                      no status yet...
+                  </div>
+              )}
+              
            
           </div>
      </div>
@@ -38,6 +49,7 @@ import {listChats} from '../../redux/actions/chats/listChats';
 const mapStateToProps=(state)=>{
   return{
       chatsList:state.chatsR.chatsList,
+     
   }
 }
 const mapDispatchToProps=(dispatch)=>{

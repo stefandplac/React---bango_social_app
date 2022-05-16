@@ -43,17 +43,17 @@ router.post(
 				}
 
 				//get gravatar
-				const avatar = gravatar.url(email, {
-					s: '200',
-					r: 'pg',
-					d: 'mm',
-				});
+				// const avatar = gravatar.url(email, {
+				// 	s: '200',
+				// 	r: 'pg',
+				// 	d: 'mm',
+				// });
 				const userId=Math.floor(Math.random()*1000000);
 				user =await  new User({
 					name: name,
 					email: email,
 					password: password,
-					avatar: avatar,
+					avatar: 'default.png',
 					publicUserId:userId,
 				});
                 console.log('user :',user.email);
@@ -143,7 +143,7 @@ router.get(['/usersList', '/usersList/:searchValue'],async (req,res,next)=>{
 		//@ we will extract data from database and return it back to UI
 		//@ i cannot return the user logged
 		
-		let users=await User.find({},'name publicUserId activated');
+		let users=await User.find({},'name publicUserId activated avatar profile status');
 		//@ return only activated users 
 		if(searchValue){
 			users=users.filter(
@@ -154,6 +154,7 @@ router.get(['/usersList', '/usersList/:searchValue'],async (req,res,next)=>{
 		}
 		else{
 			users= users.filter(user=> user.activated===true);
+			console.log('return usersList');
 			res.json(users);
 		}
 

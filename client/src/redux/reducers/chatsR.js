@@ -5,6 +5,7 @@ export const chatsR=(state={chatsList:[],
                             errors:{}, 
                             serverResponse:{},
                             emoticons:[],
+                            showProfile:false,
                         },action)=>{
     switch(action.type){
         case types.LIST_CHATS:
@@ -21,7 +22,6 @@ export const chatsR=(state={chatsList:[],
             return {...state,
                     chatToDisplay:action.chatToDisplay,
                     chatsList:action.chatsList,
-                    serverResponse:action.serverResponse,
                     errors:action.errors,
             };
         case types.SEARCH_FOR_CHAT:
@@ -37,7 +37,12 @@ export const chatsR=(state={chatsList:[],
             return {...state,
                     errors:action.errors,
                     chatsList:action.chatsList,
-            }
+                    chatToDisplay:action.chatToDisplay,
+            };
+        case types.UPDATE_SCREEN:
+            return {...state,
+                    showProfile:action.showProfile,
+            };
         default: 
             return state;
     }

@@ -28,3 +28,15 @@ export const SEARCH_FOR_CHAT="search_for_chat";
 export const GET_EMOTICONS="get_emoticons";
 export const DELETE_CHAT="delete_chat";
 
+//@ load user profile
+export const LOAD_USER_PROFILE="load_user_profile";
+
+//@ get avatars
+export const GET_AVATARS="get_avatars";
+
+//@ update profile
+export const UPDATE_PROFILE="update_profile";
+
+//@update screen showProfile
+export const UPDATE_SCREEN="update_screen";
+

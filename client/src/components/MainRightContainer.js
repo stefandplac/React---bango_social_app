@@ -7,6 +7,7 @@ import RightHeaderContainer from './RightHeaderContainer';
 import RightChatContainer from './RightChatContainer';
 import RightFooterContainer from './RightFooterContainer';
 import ShowEmoticons from './Chats/ShowEmoticons';
+import LogoContainer from './LogoContainer/LogoContainer';
 
  class MainRightContainer extends Component {
   constructor(props){
@@ -26,17 +27,27 @@ import ShowEmoticons from './Chats/ShowEmoticons';
   render() {
     return (
         <div className="mainRightContainer">
-            <RightHeaderContainer />
-            <RightChatContainer/>
-            {this.props.chatToDisplay?._id(
-              <>
-                <ShowEmoticons emoticonList={this.props.emoticonList[0].emoticon}  showEmoticon={this.state.showEmoticon} divTextArea={this.divTextArea}/>
-           
-                <RightFooterContainer toggleEmoticons={this.toggleEmoticons} textAreaRef={this.divTextArea}/>
+          {this.props.showProfile?(
+            <>
+                 <RightHeaderContainer />
+                 <LogoContainer/>
+            </>
+          ):(
+            <>
+                <RightHeaderContainer />
+                <RightChatContainer />
+                {this.props.chatToDisplay._id?(
+                  <>
+                    <ShowEmoticons emoticonList={this.props.emoticonList[0]?.emoticon}  showEmoticon={this.state.showEmoticon} divTextArea={this.divTextArea}/>
+              
+                    <RightFooterContainer toggleEmoticons={this.toggleEmoticons} textAreaRef={this.divTextArea}/>
+                  </>
+                ):(
+                  <></>
+                )}
               </>
-            ):(
-              <></>
-            )}
+          )}
+           
             
         </div>
     )
@@ -46,6 +57,7 @@ const mapStateToProps=(state)=>{
   return{
     chatToDisplay:state.chatsR.chatToDisplay,
     emoticonList:state.chatsR.emoticons,
+    showProfile:state.chatsR.showProfile,
   }
 }
 export default connect(mapStateToProps)(MainRightContainer);

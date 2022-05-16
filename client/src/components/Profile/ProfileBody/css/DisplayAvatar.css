@@ -1,0 +1,32 @@
+.displayAvatar{
+    display:flex;
+    /* justify-content: center; */
+    align-items: center;
+    width:100%;
+    height:max-content;
+    margin-top:1rem;
+    margin-bottom:1rem;
+    
+   
+}
+.avatarBox{
+    width:8rem;
+    height:4rem;
+    margin-bottom:7rem;
+    margin-left:1.5rem;
+    
+
+}
+.avatarImgBox{
+    width:100%;
+    max-height:fit-content;
+    border-radius:50%;
+}
+.selectAvatars{
+    display:flex;
+    justify-content:flex-end;
+    flex-grow:1;
+    height:100%;
+    flex-wrap:wrap;
+    overflow:hidden;
+}

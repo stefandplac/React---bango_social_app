@@ -39,6 +39,20 @@ const userSchema = mongoose.Schema({
 	status:{
 		type:String,
 		default:'',
+	},
+	profile:{
+		phoneNumber:{
+			type:String,
+			default:'',
+		},
+		city:{
+			type:String,
+			default:'',
+		},
+		country:{
+			type:String,
+			default:'',
+		}
 	}
 	
 });

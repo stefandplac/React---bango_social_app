@@ -10,6 +10,9 @@ import {displayChat} from '../redux/actions/chats/displayChat';
 //@ user defined components.....
 import MsgBox from './Chats/MsgBox';
 
+//@ constants urls imports
+import {fileUploadURL} from '../constants/constants';
+
 class RightFooterContainer extends Component {
   constructor(props){
     super(props);
@@ -38,7 +41,7 @@ class RightFooterContainer extends Component {
             
         console.log('this.textAreaRef.ccurrent.innerHtml :',this.props.textAreaRef.current.innerHTML);
         //@ I pass one more property id in this case cause I want theserver to return me the updated chat to display
-        let chatBody = {author:author, friend:friend, chatContent:String(this.props.textAreaRef.current.innerHTML),id:this.props.chatToDisplay._id};
+        let chatBody = {author:author, friend:friend, chatContent:String(this.props.textAreaRef.current.innerHTML),id: this.props.chatToDisplay._id};
         // console.log('####  inside buildChat  chatBody  @@@ ',chatBody);
         return chatBody;
   }
@@ -48,6 +51,7 @@ class RightFooterContainer extends Component {
     }
     let chatBody=this.buildChat();
     chatBody.chatType="txt";
+   
     console.log('cahtbody inside handleClick',chatBody);
     await this.props.writeChat(chatBody,this.props.chatToDisplay,this.props.chatsList);
     this.props.textAreaRef.current.innerHTML='';
@@ -75,24 +79,25 @@ class RightFooterContainer extends Component {
               }
             };
             
-            const response= await axios.post('http://localhost:5000/api/fileUpload',
+            const response= await axios.post(`${fileUploadURL}`,
                                               formData,
                                               configHeaders,
             ); 
-            console.log('response.data',response.data);
+            console.log('uploading file response.data',response.data);
             //@ we uploaded the file using one route and now we need to send the photo
             //@ to insert the photo name into chat attach
             let xString = response.data.fileName.split('.');
             
             let chatBody=await this.buildChat();
             chatBody.chatContent = response.data.fileName;
+            // chatBody.user=localStorage.publicUserId;
             //@ now we will extract the extention and store it in chatType property
             let chatExtension = xString[1];
             console.log('chatExtension ',chatExtension);
             chatBody.chatType=chatExtension;
             console.log('chatBody inside uploadFile',chatBody);
           
-             await this.props.writeChat(chatBody,this.props.chatToDisplay);
+             await this.props.writeChat(chatBody,this.props.chatToDisplay,this.props.chatsList);
             
 
     }

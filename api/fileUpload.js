@@ -14,8 +14,8 @@ router.post('/', (req,res,next)=>{
         }
 
         try{
-             console.log('req.body',req.body);
-             console.log('req.file: ',req.files);
+             console.log('fileUpload req.body',req.body);
+             console.log('fileUpload req.file: ',req.files);
             if(!req.files){
                 res.json({msg:'there is no file for upload'});
             }

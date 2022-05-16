@@ -1,8 +1,8 @@
 import * as types from '../constants/types';
 import axios from 'axios';
 
-//@ import constants...
-import {loginAURL} from '../../constants/constants';
+//@ import constants urls
+import { loginAURL } from '../../constants/constants';
 
 
 export const loginA=(loginData)=>async (dispatch)=>{
@@ -18,7 +18,7 @@ export const loginA=(loginData)=>async (dispatch)=>{
     let data={};
 
     try{
-            await axios.post(loginAURL,
+            await axios.post(`${loginAURL}`,
                                 requestBody, 
                                 configHeaders
             )
@@ -30,6 +30,7 @@ export const loginA=(loginData)=>async (dispatch)=>{
             localStorage.setItem('token',data.token);
             localStorage.setItem('publicUserId',data.publicUserId);
             localStorage.setItem('name',data.name);
+            localStorage.setItem('data',data);
             //@ now if everything credential are good we will put them in state in store
             dispatch({
                         type:types.LOGIN,
@@ -37,6 +38,7 @@ export const loginA=(loginData)=>async (dispatch)=>{
                         isAuthenticated:true,
                         errorData:{},
                         publicUserId:data.publicUserId,
+                        userProfile:data,
                         
                        
             });
@@ -59,6 +61,7 @@ export const loginA=(loginData)=>async (dispatch)=>{
                         isAuthenticated:false,
                         errorData: xError,
                         loginResponseData:{},
+                        userProfile:{},
                         // publicUserId:'',
             });
          
@@ -90,6 +93,7 @@ export const loadUser=()=>(dispatch)=>{
             loginResponseData: {token:localStorage.token,
                                 publicUserId:localStorage.publicUserId},
             publicUserId: localStorage.publicUserId,
+            
         
         });
     }
@@ -103,6 +107,7 @@ export const logOut=()=>(dispatch)=>{
     localStorage.removeItem('token');
     localStorage.removeItem('publicUserId');
     localStorage.removeItem('name');
+    
     console.log(`localstorage.publicUserId`,localStorage.publicUserId);
         dispatch({
             type:types.LOG_OUT,

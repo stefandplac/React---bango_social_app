@@ -1,8 +1,8 @@
 import * as types from '../constants/types';
 import axios from 'axios';
 
-//@ import constants...
-import {usersAURL} from '../../constants/constants';
+//@ import constants urls
+import { getUsersURL } from '../../constants/constants';
 
 export const getUsers=(...otherInfo)=>async(dispatch)=>{
     let response=[];
@@ -11,7 +11,7 @@ export const getUsers=(...otherInfo)=>async(dispatch)=>{
         if(otherInfo.length>0){
             //@ in case we use the search bar, the searched value will be passed in otherInfo array
             //@ and we need to pass that value as parameter into the link
-            response = await axios.get(`${usersAURL}${otherInfo[0]}`);
+            response = await axios.get(`${getUsersURL}${otherInfo[0]}`);
             console.log(response.data);
             dispatch({
                 type:types.GET_USERS,
@@ -19,7 +19,7 @@ export const getUsers=(...otherInfo)=>async(dispatch)=>{
             })
         }
         else {
-                 response = await axios.get(usersAURL);
+                 response = await axios.get(`${getUsersURL}`);
                 console.log(response.data);
                 dispatch({
                     type:types.GET_USERS,

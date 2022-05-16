@@ -9,21 +9,56 @@ import {listChats} from '../redux/actions/chats/listChats';
 import {getUsers} from '../redux/actions/usersA';
 import {displayChat} from '../redux/actions/chats/displayChat';
 import {getEmoticons} from '../redux/actions/chats/getEmoticons';
+import {loadUserProfile} from '../redux/actions/loadUserProfile';
+import {getAvatars} from '../redux/actions/getAvatars';
 
 class Main extends Component {
+  q=()=>{
+    let x = this.props.chatsList.length;    
+    let interval = setInterval(() => {
+                          
+                          if(localStorage.publicUserId){
+                              if(this.props.searchValue===''){
+                                     
+                                      console.log('this.props.chatsList.length: >>main>>:',x);
+                                      // console.log('this.props.searchValue >>main>> :',this.props.searchValue);
+                                      if(x>0){
+                                            
+                                            this.props.listChats(localStorage.publicUserId, {x:x} );
+                                      }
+                                      else{
+                                            this.props.listChats(localStorage.publicUserId);
+                                      }
+                              }
+                                   
+                              clearInterval(interval);
+                                this.q();
+                          }
+                          else{
+                            clearInterval(interval);
+                            return;
+                          }
+                        }, 7000);
+    
+};
+
   initialLoad=async ()=>{
     await this.props.getUsers();
     await this.props.listChats(localStorage.publicUserId);
+    
     await this.props.getEmoticons();
+    await this.props.getAvatars();
+    
+    await this.props.loadUserProfile(localStorage.publicUserId);
+    
     
     
   }
   componentDidMount(){
        this.initialLoad();
-      // this.props.getUsers();
-      // this.props.listChats(localStorage.publicUserId);
-      
-   
+       //@ for automatically update chatList
+      this.q();
+     
   }
   render() {
     return (
@@ -40,7 +75,9 @@ const mapStateToProps=(state)=>{
   return{
     chatsList:state.chatsR.chatsList,
     chatToDisplay:state.chatsR.chatToDisplay,
-    firstChatId:state.chatsR.firstChatId,
+    searchValue:state.chatsR.searchValue,
+    avatars:state.loginR.avatars,
+  
   }
 }
 const mapDispatchToProps=(dispatch)=>{
@@ -50,6 +87,8 @@ const mapDispatchToProps=(dispatch)=>{
     listChats:(userX)=>{dispatch(listChats(userX))},
     displayChat:(chatId)=>{dispatch(displayChat(chatId))},
     getEmoticons:()=>{dispatch(getEmoticons())},
+    loadUserProfile:(publicUserId)=>{dispatch(loadUserProfile(publicUserId))},
+    getAvatars:()=>{dispatch(getAvatars())},
   }
 }
 export default connect(mapStateToProps,mapDispatchToProps)(Main);

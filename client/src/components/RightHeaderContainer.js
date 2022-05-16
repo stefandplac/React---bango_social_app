@@ -4,7 +4,31 @@ import { connect } from 'react-redux';
 //@ redux actions imports...
 import {logOut} from '../redux/actions/loginA';
 
+//@ import constants 
+import {avatarURL} from '../constants/constants';
+
 class RightHeaderContainer extends Component {
+  constructor(props){
+    super(props);
+    this.state={
+      friendAvatar:'',
+    }
+  }
+  returnAvat=()=>{
+    let x;
+    if(this.props.chatToDisplay.user1?.publicUserId===localStorage.publicUserId){
+       x= this.props.usersList.filter(user=>user.publicUserId===this.props.chatToDisplay.user1.publicUserId);
+    }
+    else{
+       x= this.props.usersList.filter(user=>user.publicUserId===this.props.chatToDisplay.user2.publicUserId);
+    }
+   
+    return x.avatar;
+    
+ }
+//  componentDidMount(){
+//      this.setState({friendAvatar:this.returnAvat()});
+//  }
   logOut=()=>{
       this.props.logOut();
       console.log(localStorage.token);
@@ -13,12 +37,12 @@ class RightHeaderContainer extends Component {
     return (
     <div className="mainRightContainerHeader">
         
-         {this.props.chatToDisplay.user1 ? (
+         {this.props.chatToDisplay.user1&&this.props.showProfile===false ? (
            <div className="rightHeaderTitle">
-                  <div className="avatarUser">
-                          <svg xmlns="http://www.w3.org/2000/svg" className="" fill="none" viewBox="0 0 22 22" stroke="currentColor" strokeWidth={1}>
-                             <path strokeLinecap="round" strokeLinejoin="round" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                          </svg>
+                    <div className="showAvatarHeader" onClick={this.handleClickProfile}>
+                        <div className='leftHeaderAvatarBox'>
+                              {/* <img className="avatarImgBox" src={`${avatarURL}${this.state.friendAvatar}`} alt=""/> */}
+                        </div>
                     </div>
                     <div className="chatBox">
                         <div className="displayNameDate"> 
@@ -60,6 +84,8 @@ class RightHeaderContainer extends Component {
 const mapStateToProps=(state)=>{
   return {
       chatToDisplay:state.chatsR.chatToDisplay,
+      usersList:state.usersR.usersList,
+      showProfile:state.chatsR.showProfile,
   }
 }
 const mapDispatchToProps=(dispatch)=>{

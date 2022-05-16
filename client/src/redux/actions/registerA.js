@@ -2,9 +2,9 @@ import axios from 'axios';
 
 import * as types from '../constants/types';
 
-//@ import constants...
-import {registerAURL} from '../../constants/constants';
-import {registerAURLconfirmationEmail} from '../../constants/constants';
+//@ import constants urls
+import { registerUserURL } from '../../constants/constants';
+import { registerUserURLEmail } from '../../constants/constants';
 
 
 export const registerUser=(userData)=>async (dispatch)=>{
@@ -16,7 +16,7 @@ export const registerUser=(userData)=>async (dispatch)=>{
     const requestBody=JSON.stringify(userData);
     let data={};
     try{
-                await axios.post(registerAURL,
+                await axios.post(`${registerUserURL}`,
                 requestBody,
                 configHeaders,
                 )
@@ -31,7 +31,7 @@ export const registerUser=(userData)=>async (dispatch)=>{
                     isUserRegistered:true,
 
                 });
-                await axios.post(registerAURLconfirmationEmail,
+                await axios.post(`${registerUserURLEmail}`,
                              {email:userData.email},
                              configHeaders,   
                 ).then(response=>{

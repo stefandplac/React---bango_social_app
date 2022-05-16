@@ -1,8 +1,7 @@
 import mongoose from 'mongoose';
 const ProfileSchema = new mongoose.Schema({
-    user:{
-        type:mongoose.Schema.Types.ObjectId,
-        ref:'user'
+    publicUserId:{
+        type:Number,
     },
     phoneNumber:{
         type:String,
@@ -11,12 +10,6 @@ const ProfileSchema = new mongoose.Schema({
         type:String,
     },
     status:{
-        type:String,
-    },
-    gender:{
-        type:String,
-    },
-    nickname:{
         type:String,
     },
     creationDate:{
