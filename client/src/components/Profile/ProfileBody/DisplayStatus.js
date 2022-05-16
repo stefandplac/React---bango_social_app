@@ -20,7 +20,7 @@ class DisplayStatus extends Component {
         }
     }
     componentDidMount(){
-        if(this.props.status!==''){this.editState.current.textContent=this.props.status}
+        if(this.props.status!==''){this.editStatus.current.textContent=this.props.status}
             else{  this.editStatus.current.textContent="no status yet"; };
         if(this.props.phoneNumber!==''){ this.editPhoneNumber.current.textContent=this.props.phoneNumber}
             else{this.editPhoneNumber.current.textContent="no phone"};
