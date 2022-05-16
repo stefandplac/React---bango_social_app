@@ -59,10 +59,12 @@ class RightChatContainer extends Component {
     this.a();
    
   }
-  componentDidUpdate(){
-
-       this.b();
-  }
+  componentDidUpdate(prevProps){
+    if(prevProps.chatsList[0]!==this.props.chatsList[0]){
+        this.b();
+    }
+     
+ }
 
   render() {
    
