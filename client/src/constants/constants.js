@@ -34,7 +34,7 @@ export const loadUserProfileURL="/api/loadUserProfile/";
 export const getAvatarsURL="/api/getAvatars/";
 
 //@update profile URL
-export const updateProfileURL="0/api/updateProfile/";
+export const updateProfileURL="/api/updateProfile/";
 
 export const backgroundURL="/avatar/back.jpg";
 
