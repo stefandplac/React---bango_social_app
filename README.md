@@ -51,4 +51,24 @@ Backend:
            - changing password route :: used for development (express-validator, bcrypt, jsonwebtoken, dotenv/config)
                         - check the token and decoded it to reveal the userid
                         - use bcrypt to encrypt the password using salt and store it into the database
-           - 
+           - confirming email route :: 
+                        - check the token and decoded it to reveal the userid
+                        - search the user by userid into the database and set it to activated state
+                        - return a html file to notify the user that the account was activated and the email address is confirmed
+           - insert chat content into the database route :: 
+                        - search into the database using user PublicUserId for the pair {user, userFriend}  for an existing chat
+                        - if there is no chat already registered we create one
+                        - if there is already a chat registered we just insert into array the new messages
+                        - in the chatContent we store the name of a file if a file was sent it and the type of the chatContent (txt, jpg, pdf, odt)
+           - retrieve the chats list by user, or user && searchedValue route
+           - retrieve the chatToDisplay updated content by chatId, or chatId&&userId route
+           - file upload route :: 
+                        - generate a new name of 30 chars for the uploaded file and save it
+           - return avatars route -- returns a json file with the avatar files names stored into the database
+           - load user profile route -- returns an user profile by id
+           - return emoticons route -- returns a json file with the emoticon files names stored into the database
+           - update profile route -- update the user profile data into the database
+  - create mongoose schema for Avatars, Chats, Emoticons, Profile, User
+  - using express.static we make visible the route for uploades files, avatars and emoticons folders
+  - in .env file we store the mongoDB url and password, email and password used by nodemailer for sending emails
+  
