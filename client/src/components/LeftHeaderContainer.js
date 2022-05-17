@@ -17,9 +17,9 @@ class LeftHeaderContainer extends Component {
     // console.log('event.target.id:',event.target.name);
     this.props.returnDisplayUser('showUsers');
   }
-  handleClickProfile=()=>{
+  handleClickProfile=async()=>{
     this.props.returnDisplayUser('showProfile');
-    this.props.updateScreen(true);
+    await this.props.updateScreen(true);
     
 
   }

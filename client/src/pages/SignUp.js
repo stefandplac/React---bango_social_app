@@ -33,10 +33,10 @@ class SignUp extends Component {
         
   //     }
   // };
-  handleChange=(event)=>{
+  handleChange=async(event)=>{
     //@ to create a more friendly user experience i will delete the registrationErrors kept in store state at every check 
     //@ of the input fields
-    this.props.deleteRegistrationErrors();
+    await this.props.deleteRegistrationErrors();
     this.setState({errors:{}});
 
     switch(event.target.name) {
@@ -65,7 +65,7 @@ class SignUp extends Component {
     
   
   }
-  handleRegister= (event)=>{
+  handleRegister= async(event)=>{
     event.preventDefault();
     //@ we check first to see if there is an error in local state about the match between the passwords
     //@ if there isn't a match we will not send data for verification to the server
@@ -77,7 +77,7 @@ class SignUp extends Component {
     }
     
     //@ if both passwords are the same we dispatch the action regissterUser
-    this.props.registerUser(this.state.registerData);
+    await this.props.registerUser(this.state.registerData);
   }
   render() {
     return (

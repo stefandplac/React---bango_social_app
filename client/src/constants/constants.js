@@ -17,43 +17,43 @@ export const recoverP={top:'A recovery email has been successfully sent ',
 };
 
 //@ URLs
-export const passRecovEmailUrl='/api/reset-password/';
-export const setNewPassRecovUrl='/api/change-password';
+export const passRecovEmailUrl='http://localhost:5000/api/reset-password';
+export const setNewPassRecovUrl='http://localhost:5000/api/change-password';
 
 //@ URL ADDRESSES API SERVER
-export const attachURL='/photo/';
-export const emoticonURL="/emoticons/";
+export const attachURL='http://localhost:5000/photo/';
+export const emoticonURL="http://localhost:5000/emoticons/";
 //# deleteChat url
-export const deleteChatURL="/api/deleteChat/";
-export const avatarURL="/avatar/";
+export const deleteChatURL="http://localhost:5000/api/deleteChat/";
+export const avatarURL="http://localhost:5000/avatar/";
 
 //@ load user profile URL
-export const loadUserProfileURL="/api/loadUserProfile/";
+export const loadUserProfileURL="http://localhost:5000/api/loadUserProfile/";
 
 //@ get avatars URL
-export const getAvatarsURL="/api/getAvatars/";
+export const getAvatarsURL="http://localhost:5000/api/getAvatars/";
 
 //@update profile URL
-export const updateProfileURL="/api/updateProfile/";
+export const updateProfileURL="http://localhost:5000/api/updateProfile/";
 
-export const backgroundURL="/avatar/back.jpg";
+export const backgroundURL="http://localhost:5000/avatar/back.jpg";
 
 //@chats URLs
-export const displayChatURL="/api/chats/getChat/";
-export const getEmoticonsURL="/api/emoticons/";
-export const listChatsURL="/api/chats/getChatsList/";
-export const listChatsURL2="/api/chats/receiveChatsList/";
-export const writeChatURL='/api/chats/';
+export const displayChatURL="http://localhost:5000/api/chats/getChat/";
+export const getEmoticonsURL="http://localhost:5000/api/emoticons/";
+export const listChatsURL="http://localhost:5000/api/chats/getChatsList/";
+export const listChatsURL2="http://localhost:5000/api/chats/receiveChatsList/";
+export const writeChatURL='http://localhost:5000/api/chats/';
 
 //loginA URL
-export const loginAURL='/api/auth/';
+export const loginAURL='http://localhost:5000/api/auth/';
 
 //@ registerUserURL 
-export const registerUserURL='/api/users/';
-export const registerUserURLEmail='/api/confirmationEmail/';
+export const registerUserURL='http://localhost:5000/api/users/';
+export const registerUserURLEmail='http://localhost:5000/api/confirmationEmail/';
 
 //@ getUsersUrl
-export const getUsersURL='/api/users/usersList/';
+export const getUsersURL='http://localhost:5000/api/users/usersList/';
 
 //@ fileUploadURl
-export const fileUploadURL='/api/fileUpload/';
+export const fileUploadURL='http://localhost:5000/api/fileUpload/';

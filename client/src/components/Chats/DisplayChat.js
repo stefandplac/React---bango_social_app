@@ -25,8 +25,8 @@ class DisplayChat extends Component {
         }
     }
   
-  handleClick=()=>{
-      this.props.displayChat(this.props.chat._id);
+  handleClick=async ()=>{
+      await this.props.displayChat(this.props.chat._id);
       
   }
   handleMouseOverChat=()=>{

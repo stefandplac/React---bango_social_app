@@ -11,7 +11,7 @@ class LeftSearchBarContainer extends Component {
   handleChange=async (event)=>{
       if(this.props.searchFor==='newUsers')  {
            
-          this.props.getUsers(event.target.value);
+          await this.props.getUsers(event.target.value);
           
       }
       else {

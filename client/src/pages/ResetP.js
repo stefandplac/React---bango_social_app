@@ -36,8 +36,8 @@ class ResetP extends Component {
     
  }
 
- handleChange=(event)=>{
-      this.props.deleteLoginErrors();  
+ handleChange=async(event)=>{
+     await  this.props.deleteLoginErrors();  
       this.setState({error:''});
       if(event.target.name==='recoverPassConfirm'){
           this.setState({confirmedPass:event.target.value});
@@ -47,15 +47,15 @@ class ResetP extends Component {
      this.setState({recovery:{password:event.target.value}});
      
  }
- checkForErrors=()=>{
+ checkForErrors=async()=>{
     if(this.props.recoveryErrorData.password){
         console.log('errors with password', this.props.recoveryErrorData);
-        this.props.deleteLoginErrors();
+       await  this.props.deleteLoginErrors();
         return;
     }
    
     
-    this.props.deleteLoginErrors(); 
+    await this.props.deleteLoginErrors(); 
  }
 
  handleSubmit=async (event)=>{

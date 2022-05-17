@@ -21,15 +21,15 @@ class SignIn extends Component {
            },
       }
   }
-  handleOnChange=(event)=>{
+  handleOnChange=async(event)=>{
      event.target.name==='emailSignIn' ? this.setState({login:{...this.state.login, email:event.target.value}})
                                   : this.setState({login:{...this.state.login, password:event.target.value}});
-     this.props.deleteLoginErrors();
+     await this.props.deleteLoginErrors();
               
   }
-  handleSubmit= (event)=>{
+  handleSubmit=async (event)=>{
     event.preventDefault();
-    this.props.loginAction(this.state.login);
+    await this.props.loginAction(this.state.login);
      
   }
   componentDidMount(){

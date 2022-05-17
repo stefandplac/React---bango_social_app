@@ -12,12 +12,12 @@ import { updateProfile } from '../../../redux/actions/updateProfile';
 
 class ShowAvatars  extends Component {
 
-    handleClick=()=>{
+    handleClick=async ()=>{
         let profileBody={
                         publicUserId:localStorage.publicUserId,
                         avatar:this.props.avatar,
         };
-        this.props.updateProfile(profileBody);
+       await this.props.updateProfile(profileBody);
     }
   render() {
     return (

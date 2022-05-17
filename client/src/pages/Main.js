@@ -15,20 +15,23 @@ import {getAvatars} from '../redux/actions/getAvatars';
 class Main extends Component {
   q=()=>{
     let x = this.props.chatsList.length;    
-    let interval = setInterval(() => {
+    let interval = setInterval(async() => {
                           
                           if(localStorage.publicUserId){
                               if(this.props.searchValue===''){
-                                     
-                                      console.log('this.props.chatsList.length: >>main>>:',x);
+                                     await this.props.displayChat(this.props.chatToDisplay._id, this.props.chatToDisplay.chats.length);
+                                     console.log('#### RightChatContainer inn MAIN ### timeInterval ### chatToDisplay:',this.props.chatToDisplay);
+                                            
+                                     console.log('this.props.chatsList.length: >>main>>:',x);
                                       // console.log('this.props.searchValue >>main>> :',this.props.searchValue);
                                       if(x>0){
                                             
-                                            this.props.listChats(localStorage.publicUserId, {x:x} );
+                                            await this.props.listChats(localStorage.publicUserId, {x:x} );
                                       }
                                       else{
-                                            this.props.listChats(localStorage.publicUserId);
+                                           await   this.props.listChats(localStorage.publicUserId);
                                       }
+                                      console.log('#### MAIN ### timeInterval ### chatToDisplay:',this.props.chatToDisplay);
                               }
                                    
                               clearInterval(interval);
@@ -54,12 +57,14 @@ class Main extends Component {
     
     
   }
+
   componentDidMount(){
        this.initialLoad();
        //@ for automatically update chatList
       this.q();
      
   }
+
   render() {
     return (
       <div className="mainContainer mainContainerShadow">

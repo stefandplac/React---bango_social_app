@@ -25,19 +25,19 @@ class RecoverP extends Component {
  componentDidMount(){
     this.props.deleteLoginErrors();  
  }
- handleChange=(event)=>{
+ handleChange=async(event)=>{
      this.setState({recovery:{email:event.target.value}});
-    this.props.deleteLoginErrors();   
+    await this.props.deleteLoginErrors();   
  }
- checkForErrors=()=>{
+ checkForErrors=async()=>{
     if(this.props.recoveryErrorData.email){
         console.log('errors with email ', this.props.recoveryErrorData);
-        this.props.deleteLoginErrors();
+        await this.props.deleteLoginErrors();
         return;
     }
     console.log('print outside the if statement');
     
-    this.props.deleteLoginErrors(); 
+    await this.props.deleteLoginErrors(); 
  }
  
  handleSubmit=async (event)=>{

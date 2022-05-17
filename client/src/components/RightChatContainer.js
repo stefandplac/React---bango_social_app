@@ -22,49 +22,53 @@ const today=new Date();
 class RightChatContainer extends Component {
  
  
-   a=()=>{
+  //  a=()=>{
          
-                  let interval = setInterval(() => {
-                                        // this.setState({ time: Date.now() });
-                                        if(localStorage.publicUserId){
+  //                 let interval = setInterval(async() => {
+  //                                       // this.setState({ time: Date.now() });
+  //                                       if(localStorage.publicUserId){
                                           
-                                            this.props.displayChat(this.props.chatToDisplay._id, this.props.chatToDisplay.chats.length);
-                                            //  console.log('this.props.chatToDisplay.chats.length:',this.props.chatToDisplay.chatLength);                                        
-                                            // console.log('RightchatContainer called once more');
-                                            // this.chatContainerBox.current.scrollTop=this.chatContainerBox.current.scrollHeight;
-                                            clearInterval(interval);
+  //                                         //  await this.props.displayChat(this.props.chatToDisplay._id, this.props.chatToDisplay.chats.length);
+  //                                           //  console.log('this.props.chatToDisplay.chats.length:',this.props.chatToDisplay.chatLength);                                        
+  //                                           // console.log('RightchatContainer called once more');
+  //                                           // this.chatContainerBox.current.scrollTop=this.chatContainerBox.current.scrollHeight;
+  //                                           clearInterval(interval);
+  //                                           console.log('#### RightChatContainer ### timeInterval ### chatToDisplay:',this.props.chatToDisplay);
                                             
-                                            this.a();
-                                        }
-                                        else{
-                                          clearInterval(interval);
-                                          return;
-                                        }
-                                      }, 7000);
+  //                                           this.a();
+  //                                       }
+  //                                       else{
+  //                                         clearInterval(interval);
+  //                                         return;
+  //                                       }
+  //                                     }, 7000);
                   
-    };
+  //   };
 
-  b=()=>{
+  b=async()=>{
     // console.log('rightChatContainer this.props.chatToDisplay._id:',this.props.chatToDisplay._id);
     // console.log('this.props.chats[0]:',this.props.chatsList[0]);
-    if(!this.props.chatToDisplay._id){
+    if(this.props.chatToDisplay._id){
+      return;
+    } else {
         if(this.props.chatsList[0]){ 
-              this.props.displayChat(this.props.chatsList[0]._id);
+              await this.props.displayChat(this.props.chatsList[0]._id);
         }
       }
       
   
   }
-  componentDidMount() {
-    this.a();
+  // componentDidMount() {
+  //   // this.a();
+  
    
-  }
+  // }
   componentDidUpdate(prevProps){
-    if(prevProps.chatsList[0]!==this.props.chatsList[0]){
-        this.b();
-    }
-     
- }
+     if(prevProps.chatsList[0]?._id!==this.props.chatsList[0]?._id){
+         this.b();
+     }
+      
+  }
 
   render() {
    

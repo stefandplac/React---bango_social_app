@@ -29,8 +29,8 @@ class RightHeaderContainer extends Component {
 //  componentDidMount(){
 //      this.setState({friendAvatar:this.returnAvat()});
 //  }
-  logOut=()=>{
-      this.props.logOut();
+  logOut=async()=>{
+      await this.props.logOut();
       console.log(localStorage.token);
   }
   render() {

@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 //@ css file imports
 import './css/DisplayStatus.css';
 
 //@redux actions imports
 import { updateProfile } from '../../../redux/actions/updateProfile';
-import { connect } from 'react-redux';
+
 
 class DisplayStatus extends Component {
     constructor(props){

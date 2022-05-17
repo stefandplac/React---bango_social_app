@@ -8,10 +8,10 @@ import { updateScreen } from '../../redux/actions/chats/updateScreen';
 import { connect } from 'react-redux';
 
 class ProfileHeader extends Component {
-    handleClick=()=>{
+    handleClick=async()=>{
         let x='showChats';
         this.props.returnDisplayUser(x);
-        this.props.updateScreen(false);
+       await this.props.updateScreen(false);
     }
   render() {
     return (
