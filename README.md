@@ -68,7 +68,9 @@ Backend:
            - load user profile route -- returns an user profile by id
            - return emoticons route -- returns a json file with the emoticon files names stored into the database
            - update profile route -- update the user profile data into the database
-  - create mongoose schema for Avatars, Chats, Emoticons, Profile, User
-  - using express.static we make visible the route for uploades files, avatars and emoticons folders
-  - in .env file we store the mongoDB url and password, email and password used by nodemailer for sending emails
+           
+           
+- create mongoose schema for Avatars, Chats, Emoticons, Profile, User
+- using express.static we make visible the route for uploades files, avatars and emoticons folders
+- in .env file we store the mongoDB url and password, email and password used by nodemailer for sending emails
   
