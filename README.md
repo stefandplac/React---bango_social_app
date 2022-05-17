@@ -1,5 +1,5 @@
 # bango_social_app
-creating a social app with User Registration, User Login, Password Recovery, Posts, Groups, using REACT class based components, Redux, Express.js, MongoDB, bcryptjs to create and store into the database encrypted
+creating a social app with User Registration, User Login, Password Recovery, Posts, using REACT class based components, Redux, Express.js, MongoDB, bcryptjs to create and store into the database encrypted
 passwords, JsonWebToken to facilitate after the login exchanging data between frontend and backend in a secure way , and also to generate on the server api links for recovering passwords/confirming email addresses
 
 The app is running on  
