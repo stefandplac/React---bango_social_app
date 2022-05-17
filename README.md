@@ -21,7 +21,7 @@ peter.test.v01@gmail.com   pass:1234
 
 Details about development
 Frontend:
-Funcitionalities:
+Functionalities:
 - user registration and authentification with data validation on the backend side
 - choose a user from the list to start a private conversation
 - searching for a user to start a private conversation
@@ -31,4 +31,5 @@ Funcitionalities:
 - automatically update the chats list 
 - update user profile data
 - create a custom textArea using div to write the chat content with emoticons insertion along the text and storing into the database as html string
+
 Frontend development using React (routes, ref, state, props, lifecycle methods), Redux(store, actions, reducers, constants), html-react-parser, axios , form-data 
