@@ -23,6 +23,7 @@ export const setNewPassRecovUrl='/api/change-password';
 //@ URL ADDRESSES API SERVER
 export const attachURL='/photo/';
 export const emoticonURL="/emoticons/";
+
 //# deleteChat url
 export const deleteChatURL="/api/deleteChat/";
 export const avatarURL="/avatar/";
