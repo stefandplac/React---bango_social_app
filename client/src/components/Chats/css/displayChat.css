@@ -33,11 +33,17 @@
     justify-content: space-between;
     margin-right:15px;
 }
+
 .displayTime{
+    /* border:1px solid red; */
+    display:flex;
+    flex-direction:row;
+    min-width:45px !important;
     font-size:0.9rem;
     color:#a8a8a8;
     font-weight: 400;
 }
+
 .displayStatus{
     font-size:0.8rem;
     font-style: italic;
