@@ -315,9 +315,11 @@
     
 }
 .friendMsg{
-    
-    background-color:rgb(118, 206, 236);
     display:flex;
+    flex-direction:row;
+   
+    background-color:rgb(118, 206, 236);
+    
     align-items: center;
     border-radius:5px;
     padding:10px 10px 10px 10px;
@@ -326,16 +328,30 @@
     /* font-weight: 500; */
     font-family:Arial, Helvetica, sans-serif;
 }
-/* .friendMsg > img {
+.friendMsg > img {
+    width:20px;
+    height:20px;
+    padding:3px;
+}
+.displayHTML{
+    display:flex;
+    flex-direction: row;
+    align-items:center;
+}
+.displayHTML >img{
     width:25px;
     height:25px;
     padding:3px;
 }
+
 .userMsg > img {
     width:25px;
     height:25px;
     padding:3px;
-} */
+} 
+.displayHTML{
+
+}
 /* //@ mainLeftContainerHeader */
 .leftHeaderMenu{
     padding-right:1rem;

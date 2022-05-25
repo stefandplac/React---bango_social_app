@@ -21,30 +21,6 @@ const today=new Date();
 
 class RightChatContainer extends Component {
  
- 
-  //  a=()=>{
-         
-  //                 let interval = setInterval(async() => {
-  //                                       // this.setState({ time: Date.now() });
-  //                                       if(localStorage.publicUserId){
-                                          
-  //                                         //  await this.props.displayChat(this.props.chatToDisplay._id, this.props.chatToDisplay.chats.length);
-  //                                           //  console.log('this.props.chatToDisplay.chats.length:',this.props.chatToDisplay.chatLength);                                        
-  //                                           // console.log('RightchatContainer called once more');
-  //                                           // this.chatContainerBox.current.scrollTop=this.chatContainerBox.current.scrollHeight;
-  //                                           clearInterval(interval);
-  //                                           console.log('#### RightChatContainer ### timeInterval ### chatToDisplay:',this.props.chatToDisplay);
-                                            
-  //                                           this.a();
-  //                                       }
-  //                                       else{
-  //                                         clearInterval(interval);
-  //                                         return;
-  //                                       }
-  //                                     }, 7000);
-                  
-  //   };
-
   b=async()=>{
     // console.log('rightChatContainer this.props.chatToDisplay._id:',this.props.chatToDisplay._id);
     // console.log('this.props.chats[0]:',this.props.chatsList[0]);
@@ -58,11 +34,7 @@ class RightChatContainer extends Component {
       
   
   }
-  // componentDidMount() {
-  //   this.a();
-  
-   
-  // }
+ 
   componentDidUpdate(prevProps){
      if(prevProps.chatsList[0]?._id!==this.props.chatsList[0]?._id){
          this.b();
@@ -112,10 +84,18 @@ class RightChatContainer extends Component {
                                           </a>
                                     ): chat.chatType==='txt'?(
                                               <div className="friendMsg">
-                                                  <div> {parser(chat.chatContent)}</div>
+                                                  <div className="displayHTML"> {parser(chat.chatContent)}</div>
                                                   <ChatTimeBox chat={chat} displaySeenIcon={true}/>
                                               </div>
-                                    ):(<></>)}
+                                    ):(
+                                            <a href={`${attachURL}${chat.chatContent}`} target="_blank" download={chat.chatContent}>
+                                                  <img src="https://upload.wikimedia.org/wikipedia/commons/4/48/Line-style-icons-document.svg" width="40px" alt=""/>
+                                                  <div className="displayPdfTitle">{`${chat.chatContent.slice(0,5)}...${chat.chatContent.split('.')[1]}`}</div>
+                                                  <div className="alignChatTimeBox"> <ChatTimeBox chat={chat} displaySeenIcon={true}/></div>
+                                 
+                                            </a>
+                                    
+                                      )}
                                      
                                      
                                   </div>
@@ -151,10 +131,17 @@ class RightChatContainer extends Component {
                                               </a>
                                         ):chat.chatType==='txt'?(
                                             <div className="userMsg"> 
-                                                <div>{parser(chat.chatContent)}</div>
+                                                <div className="displayHTML">{parser(chat.chatContent)}</div>
                                                 <ChatTimeBox chat={chat} displaySeenIcon={false}/>
                                             </div>
-                                        ):(<></>)}
+                                        ):( 
+                                            <a href={`${attachURL}${chat.chatContent}`} target="_blank" download={chat.chatContent}>
+                                                    <img src="https://upload.wikimedia.org/wikipedia/commons/4/48/Line-style-icons-document.svg" width="40px" alt=""/>
+                                                    <div className="displayPdfTitle">{`${chat.chatContent.slice(0,5)}...${chat.chatContent.split('.')[1]}`}</div>
+                                                    <div className="alignChatTimeBox"> <ChatTimeBox chat={chat} displaySeenIcon={true}/></div>
+                                  
+                                            </a>)
+                                        }
                                      
                                   </div>
                               </div>
