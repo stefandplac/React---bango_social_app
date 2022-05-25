@@ -9,7 +9,7 @@ export default class ChatTimeBox extends Component {
     return (
     <div className='timeBox'>
         <div className="displayTime">
-            {today.getDate===new Date(this.props.chat.date).getDate ? (
+            {today.getDate()===new Date(this.props.chat.date).getDate() ? (
                 <>
                   {new Date(this.props.chat.date).toLocaleTimeString('en-us',{hour:'2-digit', minute:'2-digit'})}
                 </>
