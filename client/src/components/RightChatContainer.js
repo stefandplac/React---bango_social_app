@@ -91,7 +91,7 @@ class RightChatContainer extends Component {
                                             <a href={`${attachURL}${chat.chatContent}`} target="_blank" download={chat.chatContent}>
                                                   <img src="https://upload.wikimedia.org/wikipedia/commons/4/48/Line-style-icons-document.svg" width="40px" alt=""/>
                                                   <div className="displayPdfTitle">{`${chat.chatContent.slice(0,5)}...${chat.chatContent.split('.')[1]}`}</div>
-                                                  <div className="alignChatTimeBox"> <ChatTimeBox chat={chat} displaySeenIcon={true}/></div>
+                                                  <div className="alignChatTimeBox"> <ChatTimeBox chat={chat} displaySeenIcon={false}/></div>
                                  
                                             </a>
                                     
@@ -138,7 +138,7 @@ class RightChatContainer extends Component {
                                             <a href={`${attachURL}${chat.chatContent}`} target="_blank" download={chat.chatContent}>
                                                     <img src="https://upload.wikimedia.org/wikipedia/commons/4/48/Line-style-icons-document.svg" width="40px" alt=""/>
                                                     <div className="displayPdfTitle">{`${chat.chatContent.slice(0,5)}...${chat.chatContent.split('.')[1]}`}</div>
-                                                    <div className="alignChatTimeBox"> <ChatTimeBox chat={chat} displaySeenIcon={true}/></div>
+                                                    <div className="alignChatTimeBox"> <ChatTimeBox chat={chat} displaySeenIcon={false}/></div>
                                   
                                             </a>)
                                         }

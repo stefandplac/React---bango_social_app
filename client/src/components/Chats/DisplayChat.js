@@ -4,6 +4,7 @@ import parser from 'html-react-parser';
 
 //@ redux actions....
 import {displayChat} from '../../redux/actions/chats/displayChat';
+import {stopUpdatingChatsList} from '../../redux/actions/chats/stopUpdatingChatsList';
 
 //@ import constants 
 import {avatarURL} from '../../constants/constants';
@@ -24,6 +25,12 @@ class DisplayChat extends Component {
             
         }
     }
+    componentDidMount(){
+        let y = new Date();
+        let x = this.props.chat.chats[0] ? new Date(this.props.chat.chats[this.props.chat.chats.length-1].date) : y;
+        this.setState({chatDate: x});
+        this.setState({friendAvatar:this.returnAvatar()});
+    }
   
   handleClick=async ()=>{
       await this.props.displayChat(this.props.chat._id);
@@ -31,9 +38,11 @@ class DisplayChat extends Component {
   }
   handleMouseOverChat=()=>{
        this.setState({showDelete:true});
+       this.props.stopUpdatingChatsList(false);
   }
   handleMouseOutChat=()=>{
         this.setState({showDelete:false});
+        this.props.stopUpdatingChatsList(true);
   }
   returnAvatar=()=>{
      let x;
@@ -46,15 +55,12 @@ class DisplayChat extends Component {
      return x[0].avatar;
      
   }
-  componentDidMount(){
-      this.setState({friendAvatar:this.returnAvatar()});
-  }
-
+ 
   
   render() {
       
     return (
-    <div className="chatContainer" onClick={this.handleClick} onMouseOver={this.handleMouseOverChat} onMouseOut={this.handleMouseOutChat}>
+    <div className="chatContainer" onClick={this.handleClick} onMouseEnter={this.handleMouseOverChat} onMouseLeave={this.handleMouseOutChat}>
         <div className="avatarUser">
                 <img className="avatarImgBox" src={`${avatarURL}${this.state.friendAvatar}`} alt=""/>
         </div>
@@ -75,17 +81,27 @@ class DisplayChat extends Component {
                     }
                 </div>
                 <div className="displayTimeOnLeft">
-                    {today.getDate===this.state.chatDate.getDate ? (
-                        <>
-                          {this.state.chatDate.toLocaleTimeString([],{hour:'2-digit', minute:'2-digit'})}
-                        </>
-                    ):(
-                        <>
-                         {this.state.chatDate.toLocaleDateString('en-us', { weekday:"long", year:"numeric", month:"short", day:"numeric"})}
-                        </>
-                    )
-                    
+                    {
+                        this.props.chat.chats[0]? (
+                            <>
+                                {today.getDate()===this.state.chatDate.getDate() ? (
+                                    <>
+                                    {this.state.chatDate.toLocaleTimeString([],{hour:'2-digit', minute:'2-digit'})}
+                                    </>
+                                ):(
+                                    <>
+                                    {this.state.chatDate.toLocaleDateString('en-us', { weekday:"long", year:"numeric", month:"short", day:"numeric"})}
+                                    </>
+                                )
+                                
+                                }
+                            </>
+
+                        ):(
+                            <></>
+                        )
                     }
+                            
                </div>
             </div>
             <div className="">
@@ -116,7 +132,7 @@ class DisplayChat extends Component {
                     <div className="showDeleteBox" >
                                     {this.state.showDelete===true?(
                                        <>
-                                            {/* <DeleteChat chatId={this.props.chat._id}/> */}
+                                            <DeleteChat chatId={this.props.chat._id}/>
                                             </>
                                        
                                     ):(
@@ -143,6 +159,7 @@ const mapStateToProps=(state)=>{
 const mapDispatchToProps=(dispatch)=>{
     return{
         displayChat:(chatId)=>{dispatch(displayChat(chatId))},
+        stopUpdatingChatsList:(bool)=>{dispatch(stopUpdatingChatsList(bool))},
     }
 }
 export default connect(mapStateToProps,mapDispatchToProps)(DisplayChat);
